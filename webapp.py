@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from transformers import pipeline
 from PIL import Image
 import os
@@ -36,6 +36,10 @@ def index():
             image = Image.open(filepath).convert("RGB")
             result = detect_image(image)
     return render_template('index.html', result=result, filename=filename)
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':
     app.run(debug=True) 

@@ -24,6 +24,7 @@
             border-radius: 18px;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
             padding: 2.5em 2em 2em 2em;
+            -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255,255,255,0.18);
             animation: fadeIn 1.2s cubic-bezier(.39,.575,.565,1) both;
@@ -145,7 +146,8 @@
     <div class="container">
         <h1>AI Image Detector (SDXL)</h1>
         <form method="post" enctype="multipart/form-data">
-            <input type="file" name="image" accept="image/*" required>
+            <label for="image-upload" style="font-weight:500;display:block;text-align:center;margin-bottom:0.5em;">Select an image to upload:</label>
+            <input type="file" id="image-upload" name="image" accept="image/*" required title="Choose an image file to upload">
             <button type="submit">Detect</button>
         </form>
         {% if error %}
